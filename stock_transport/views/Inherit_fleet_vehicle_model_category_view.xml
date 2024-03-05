@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    fleet_vehicle_model_category_view_tree
     <record id="stock_transport_vehicle_category_view_tree" model="ir.ui.view">
         <field name="name">stock.transport.view.tree.inherit</field>
         <field name="model">fleet.vehicle.model.category</field>

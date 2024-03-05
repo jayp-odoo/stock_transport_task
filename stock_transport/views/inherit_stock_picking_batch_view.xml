@@ -17,22 +17,45 @@
             </xpath>
         </field>
     </record>
-    <record id="stock_transport_view_graph" model="ir.ui.view">
+    <!-- graph view  -->
+    <record id="stock_transport_batch_view_graph" model="ir.ui.view">
         <field name="name">stock_transport.view.graph</field>
         <field name="model">stock.picking.batch</field>
         <field name="arch" type="xml">
-            <graph string="hello" type="bar" sample="1" stacked="True">
+            <graph string="Graph View" type="bar" sample="1" stacked="True" >
+                <field name="scheduled_date" type="row" interval="day" />
+                <field name="vehicle_category"  />
                 <field name="volume" />
                 <field name="weight" />
-                <field name="vehicle_category" type="row" ></field>
-                <field name="scheduled_date" type="col" interval="day" />
+                <field name="no_of_lines" />
+                <field name="no_of_transfers"  />
             </graph>
+        </field>
+    </record>
+    <!-- gantt view  -->
+    <record id="stock_transport_view_batch_view_gantt" model="ir.ui.view">
+        <field name="name">stock_transport.batch.view.gantt</field>
+        <field name="model">stock.picking.batch</field>
+        <field name="arch" type="xml">
+            <gantt date_start="create_date"
+                date_stop="scheduled_date" 
+                scales="day,week,month,year" 
+                default_group_by="dock_id,vehicle" 
+                string="Schedule"
+                default_scale="week"
+                decoration-info="state == 'draft'"
+                color="vehicle"
+                >
+                <field name="state"></field>
+                <field name="vehicle"></field>
+                <field name="weight"></field>
+            </gantt>
         </field>
     </record>
     <record id="stock_picking_batch.stock_picking_batch_action" model="ir.actions.act_window">
         <field name="name">Batch Transfers</field>
         <field name="res_model">stock.picking.batch</field>
-        <field name="view_mode">tree,form,kanban,graph</field>
+        <field name="view_mode">tree,form,kanban,graph,gantt</field>
         <field name="domain">[('is_wave', '=', False)]</field>
         <field name="context">{'search_default_draft': True, 'search_default_in_progress': True}</field>
     </record>
