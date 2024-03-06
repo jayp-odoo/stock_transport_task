@@ -88,8 +88,13 @@ class StockPickingBatch(models.Model):
         """
         for record in self:
             name = record.name
-            if record.weight and record.volume and record.vehicle:
-                name = f"{record.vehicle.driver_id.name}: {record.weight}kg, {record.volume}m\u00B3"
+            total_weight = 0
+            total_volume = 0
+            if record.move_line_ids:
+                for products in record.move_line_ids:
+                    total_weight += products.product_id.weight * products.quantity
+                    total_volume += products.product_id.volume * products.quantity
+                name = f"{record.vehicle.driver_id.name}: {total_weight}kg, {total_volume}m\u00B3"
             elif record.vehicle:
                 name = record.vehicle.driver_id.name
             record.display_name = name

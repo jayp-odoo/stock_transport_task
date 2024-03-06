@@ -47,8 +47,6 @@
                 color="vehicle"
                 >
                 <field name="state"></field>
-                <field name="vehicle"></field>
-                <field name="weight"></field>
             </gantt>
         </field>
     </record>
