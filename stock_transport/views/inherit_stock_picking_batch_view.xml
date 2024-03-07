@@ -12,9 +12,6 @@
                 <field name="weight" invisible="not vehicle_category" widget="progressbar"/>
                 <field name="volume" invisible="not vehicle_category" widget="progressbar"/>
             </xpath>
-            <xpath expr="//field[@name='picking_ids']" position="inside">
-                <!-- <field name="volume"></field> -->
-            </xpath>
         </field>
     </record>
     <!-- graph view  -->

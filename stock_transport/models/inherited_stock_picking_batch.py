@@ -16,8 +16,8 @@ class StockPickingBatch(models.Model):
         "fleet.vehicle.model.category",
         string="Vehicle Category",
     )
-    weight = fields.Integer(string="Weight", compute="_compute_weight", store=True)
-    volume = fields.Integer(string="Volume", compute="_compute_volume", store=True)
+    weight = fields.Float(string="Weight", compute="_compute_weight", store=True)
+    volume = fields.Float(string="Volume", compute="_compute_volume", store=True)
     no_of_lines = fields.Integer(
         string="No of Lines", compute="_compute_no_of_lines", store=True
     )

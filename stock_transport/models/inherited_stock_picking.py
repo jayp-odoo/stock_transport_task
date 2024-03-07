@@ -4,7 +4,7 @@ from odoo import api, fields, models
 class StockPickings(models.Model):
     _inherit = "stock.picking"
 
-    volume = fields.Integer(string="Volume", compute="_compute_volume", store=True)
+    volume = fields.Float(string="Volume", compute="_compute_volume", store=True)
 
     @api.depends("product_id")
     def _compute_volume(self):
